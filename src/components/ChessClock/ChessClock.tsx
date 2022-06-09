@@ -2,10 +2,12 @@ import React, { Component, HTMLAttributes } from 'react';
 //import logo from './logo.svg';
 import './ChessClock.css'
 import Timer from '../Timer/Timer';
+import SvgButton from '../SvgButton/SvgButton'
 
 interface Props { }
 
 interface State {
+  isGameStarted: boolean,
   isFirstTimerActive: boolean,
   isSecondTimerActive: boolean,
   currentPlayer: number
@@ -14,7 +16,6 @@ interface State {
 
 export default class ChessClock extends Component<Props & HTMLAttributes<HTMLDivElement>, State>  {
 
-  isGameStarted: boolean;
   minutes: number;
   seconds: number;
 
@@ -22,12 +23,13 @@ export default class ChessClock extends Component<Props & HTMLAttributes<HTMLDiv
     super(props);
 
     this.state = {
+      isGameStarted: false,
       isFirstTimerActive: false,
       isSecondTimerActive: false,
       currentPlayer: 0
     }
-    
-    this.isGameStarted = false;
+
+
     this.minutes = 90;
     this.seconds = 0;
   }
@@ -42,19 +44,20 @@ export default class ChessClock extends Component<Props & HTMLAttributes<HTMLDiv
 
   render() {
     return (
-      <div className="ChessClock m-5">
-        <button className='btn btn-success mb-3'
-          disabled={this.isGameStarted}
-          onClick={() => {
-            if (!this.isGameStarted) {
-              this.isGameStarted = true;
+      <div className="ChessClock">
+        <SvgButton isActiveButton={() => !this.state.isGameStarted}
+          buttonId="Start"
+          background="#4a00fb"
+          foreground="white"
+          text="Начать игру"
+          action={() => {
+            if (!this.state.isGameStarted) {
               this.setState({
+                isGameStarted: !this.state.isGameStarted,
                 currentPlayer: 1
               })
             }
-          }}>
-          Начать игру
-        </button>
+          }} />
         <div className="row timer p-3">
           <div className='col'>
             <h5>Игрок 1</h5>
@@ -70,18 +73,19 @@ export default class ChessClock extends Component<Props & HTMLAttributes<HTMLDiv
           </div>
 
         </div>
-        <button className='btn btn-danger mt-3'
-          disabled={!this.isGameStarted}
-          onClick={(): void => {
-            if (this.isGameStarted) {
-              this.isGameStarted = false;
+        <SvgButton isActiveButton={() => this.state.isGameStarted}
+          buttonId="Stop"
+          background="#d30900"
+          foreground="white"
+          text="Стоп"
+          action={() => {
+            if (this.state.isGameStarted) {
               this.setState({
+                isGameStarted: false,
                 currentPlayer: 0
               });
             }
-          }}>
-          Стоп
-        </button>
+          }} />
       </div>
     );
 
