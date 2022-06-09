@@ -1,4 +1,5 @@
 import React, { Component, HTMLAttributes } from 'react';
+import { Guid } from 'guid-ts';
 import './SvgButton.css';
 
 interface Props {
@@ -15,13 +16,11 @@ interface State {
 
 export default class SvgButton extends Component<Props & HTMLAttributes<HTMLDivElement>, State> {
     private isActiveButton: () => boolean;
-    private buttonId: string;
+    private readonly buttonId: string = Guid.newGuid().toString();
     private background: string;
     private foreground: string;
     private text: string;
     private action: () => void;
-
-    private static id:number = 0;
 
     constructor(props: Props) {
         super(props);
@@ -35,9 +34,7 @@ export default class SvgButton extends Component<Props & HTMLAttributes<HTMLDivE
         this.state = {
             shadow: this.isActiveButton() ? 8 : 0
         }
-
-        this.buttonId = SvgButton.id.toString();
-        ++SvgButton.id;
+        
     }
 
     render() {
@@ -92,7 +89,9 @@ export default class SvgButton extends Component<Props & HTMLAttributes<HTMLDivE
         );
     }
 
-    componentDidMount() { }
+    componentDidMount() {
+    
+     }
 
     componentDidUpdate() {
         if (this.isActiveButton()) {
