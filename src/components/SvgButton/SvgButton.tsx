@@ -3,7 +3,6 @@ import './SvgButton.css';
 
 interface Props {
     isActiveButton: () => boolean,
-    buttonId: string,
     background: string,
     foreground: string;
     text: string,
@@ -15,18 +14,19 @@ interface State {
 }
 
 export default class SvgButton extends Component<Props & HTMLAttributes<HTMLDivElement>, State> {
-    isActiveButton: () => boolean;
-    buttonId: string;
-    background: string;
-    foreground: string;
-    text: string;
-    action: () => void;
+    private isActiveButton: () => boolean;
+    private buttonId: string;
+    private background: string;
+    private foreground: string;
+    private text: string;
+    private action: () => void;
+
+    private static id:number = 0;
 
     constructor(props: Props) {
         super(props);
 
         this.isActiveButton = props.isActiveButton;
-        this.buttonId = props.buttonId;
         this.background = props.background;
         this.foreground = props.foreground;
         this.text = props.text;
@@ -36,6 +36,8 @@ export default class SvgButton extends Component<Props & HTMLAttributes<HTMLDivE
             shadow: this.isActiveButton() ? 8 : 0
         }
 
+        this.buttonId = SvgButton.id.toString();
+        ++SvgButton.id;
     }
 
     render() {

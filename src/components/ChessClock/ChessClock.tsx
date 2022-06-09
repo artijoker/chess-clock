@@ -40,7 +40,6 @@ export default class ChessClock extends Component<Props & HTMLAttributes<HTMLDiv
     return (
       <div className="ChessClock">
         <SvgButton isActiveButton={() => !this.state.isGameStarted}
-          buttonId="Start"
           background="#4a00fb"
           foreground="white"
           text="Начать игру"
@@ -68,7 +67,6 @@ export default class ChessClock extends Component<Props & HTMLAttributes<HTMLDiv
 
         </div>
         <SvgButton isActiveButton={() => this.state.isGameStarted}
-          buttonId="Stop"
           background="#d30900"
           foreground="white"
           text="Стоп"

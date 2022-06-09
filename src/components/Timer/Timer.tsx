@@ -156,7 +156,6 @@ export default class Timer extends Component<Props & HTMLAttributes<HTMLDivEleme
                 </div>
 
                 <SvgButton isActiveButton={() => this.state.isActiveButton}
-                    buttonId={"Player" + this.playerNumber}
                     background="#ff7500"
                     foreground="black"
                     text='Завершить ход'
