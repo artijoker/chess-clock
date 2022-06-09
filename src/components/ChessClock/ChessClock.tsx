@@ -8,11 +8,8 @@ interface Props { }
 
 interface State {
   isGameStarted: boolean,
-  isFirstTimerActive: boolean,
-  isSecondTimerActive: boolean,
   currentPlayer: number
 }
-
 
 export default class ChessClock extends Component<Props & HTMLAttributes<HTMLDivElement>, State>  {
 
@@ -24,11 +21,8 @@ export default class ChessClock extends Component<Props & HTMLAttributes<HTMLDiv
 
     this.state = {
       isGameStarted: false,
-      isFirstTimerActive: false,
-      isSecondTimerActive: false,
       currentPlayer: 0
     }
-
 
     this.minutes = 90;
     this.seconds = 0;

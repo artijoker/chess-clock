@@ -12,7 +12,6 @@ interface Props {
 
 interface State {
     shadow: number
-
 }
 
 export default class SvgButton extends Component<Props & HTMLAttributes<HTMLDivElement>, State> {

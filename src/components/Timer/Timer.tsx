@@ -1,7 +1,7 @@
 import React, { Component, HTMLAttributes } from 'react';
 import './Timer.css';
-
 import SvgButton from '../SvgButton/SvgButton'
+
 interface Props {
     minutes?: number,
     seconds?: number,
@@ -154,7 +154,7 @@ export default class Timer extends Component<Props & HTMLAttributes<HTMLDivEleme
                         </text>
                     </svg>
                 </div>
-                
+
                 <SvgButton isActiveButton={() => this.state.isActiveButton}
                     buttonId={"Player" + this.playerNumber}
                     background="#ff7500"
@@ -229,11 +229,6 @@ export default class Timer extends Component<Props & HTMLAttributes<HTMLDivEleme
 
         return `${minutes.toLocaleString(undefined, { minimumIntegerDigits: 2 })} 
         : ${seconds.toLocaleString(undefined, { minimumIntegerDigits: 2 })}`;
-    }
-
-    getButton = () => {
-        let button = [];
-        button.push()
     }
 }
 
